@@ -189,3 +189,82 @@ $ cat ./id_rsa.pub >> ./authorized_keys  # 将生成的秘钥加入授权
    This command was run using /usr/local/hadoop/share/hadoop/common/hadoop-common-2.8.5.jar
    ```
 
+## 6. Hadoop 伪分布式配置
+
+1. 修改Hadoop的配置文件
+
+   1. core-site.xml
+
+      进入`/usr/local/hadoop/etc/hadoop/`
+
+      ```
+      $ cd /usr/local/hadoop/etc/hadoop
+      $ vim core-site.xml
+      ```
+
+      将其中的
+
+      ```
+      <configuration>
+      </configuration>
+      ```
+
+      修改为
+
+      ```
+      <configuration>
+              <property>
+                      <name>hadoop.tmp.dir</name>                                                       <value>file:/usr/local/hadoop/tmp</value>
+                      <description>Abase for other temporary directories.</description>
+              </property>                                                                       <property>
+                      <name>fs.defaultFS</name>
+                      <value>hdfs://localhost:9000</value>
+              </property>
+      </configuration>
+      ```
+
+      保存退出
+
+   2. hdfs-site.xml
+
+      同样在`configuratio` 标签修改为
+
+      ```
+      <configuration>
+              <property>
+                      <name>dfs.replication</name>
+      				<value>1</value>
+              </property>
+              <property>
+                      <name>dfs.namenode.name.dir</name>
+                      <value>file:/usr/local/hadoop/tmp/dfs/name</value>
+              </property>
+              <property>
+                      <name>dfs.datanode.data.dir</name>
+                      <value>file:/usr/local/hadoop/tmp/dfs/data</value>
+      		</property>
+      </configuration>
+      ```
+
+2. 执行`NAMENode`的格式化
+
+   ```
+   $ cd /usr/local/hadoop
+   $ ./bin/hdfs namenode -format
+   ```
+
+   成功会显示
+
+   ```
+   Exitting with status 0”
+   ```
+
+3. 开启`NameNode`和`DataNode`守护进程
+
+   ```
+   $ cd /usr/local/hadoop
+   $ ./sbin/start-dfs.sh
+   ```
+
+   
+
