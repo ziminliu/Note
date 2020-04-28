@@ -17,13 +17,13 @@
 # 3.运行mysql镜像
 
 ```
-# docker run --name first-mysql -p 12345:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+# docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
 ```
 
 ```
 run            运行一个容器
 --name         后面是这个镜像的名称
--p 3306:3306   表示在这个容器中使用3306端口(第二个)	映射到本机的端口号也为12345(第一个)
+-p 3306:3306   表示在这个容器中使用3306端口(第二个)	映射到本机的端口号也为3306(第一个)
 -P			   随机分配端口
 -e			   设置密码数据库密码为123456
 -d             表示使用守护进程运行，即服务挂在后台
@@ -99,3 +99,4 @@ a2988a5dbaeefd47c97698865acb83cdfef941a586112ab473c76e0bf9f7d466
    ```
 
    
+
