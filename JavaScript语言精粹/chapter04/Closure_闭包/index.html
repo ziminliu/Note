@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="A">A</button>
+  <button>B</button>
+  <button>C</button>
+  <button>D</button>
+  <button>E</button>
+</body>
+<script>
+  let nodes = document.querySelectorAll("button")
+  // 将所有的nodes转化为数组类型
+  let root = [...nodes]
+  // 获取所有的button 节点,使对不同的节点点击出现不同的内容.
+  // 1.错误方式.
+  // var add_the_handlers = function (nodes) {
+  //   var i;
+  //   for (i = 0; i < nodes.length; i++) {
+  //     nodes[i].onclick = () => {
+  //       alert(i)
+  //     }
+  //   }
+  // }
+
+
+  // 2. 使用闭包与辅助函数的方式 
+  var add_the_handlers = function (nodes) {
+    var i;
+    var help = function (num) {
+      return () => alert(num)
+    }
+    for (i = 0; i < nodes.length; i++) {
+      nodes[i].onclick = help(i)
+    }
+  }
+
+  // 3. 使用let变量
+  // var add_the_handlers = function (nodes) {
+  //   for (let i = 0; i < nodes.length; i++) {
+  //     nodes[i].onclick = () => {
+  //       alert(i)
+  //     }
+  //   }
+  // }
+
+  add_the_handlers(root);
+</script>
+
+</html>
