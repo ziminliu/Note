@@ -226,3 +226,13 @@ JavaScript的众多假值：
 | null         | Object    |
 | undefined    | Undefined |
 
+
+
+## hasOwnProperty()
+
+`hasOwnProperty()`可以避开`for in` 的隐患，但是由于 `hasOwnProperty()` 是一个方法，而不是一个运算符，所以它可能被一个不同的函数或值所替换。
+
+
+
+## 对象(Object)
+
