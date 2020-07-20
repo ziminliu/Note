@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .ball-running {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      background-color: pink;
+      animation: run-around linear 4s infinite;
+    }
+
+    @keyframes run-around {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      25% {
+        transform: translate(200px, 0);
+      }
+
+      50% {
+        transform: translate(200px, 200px);
+      }
+
+      75% {
+        transform: translate(0, 200px);
+      }
+
+      100% {
+        transform: translate(0, 0px);
+      }
+    }
+  </style>
+  <!-- 无限回流 -->
+  <h2>Cumulative Layout Shifts can result in poor user experiences.</h2>
+  <div class="ball-running"></div>
+</body>
+
+</html>
